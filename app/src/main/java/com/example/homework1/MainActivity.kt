@@ -166,19 +166,23 @@ class MainActivity : AppCompatActivity() {
                 spoopyfyButton.text = "Wegz On SPOTIFY faye3"
             }else {
                 textViewsContainer.text = "Choose something pwease"
+                url = ""
             }
         }
 
         spoopyfyButton.setOnClickListener {
-            Log.d("Button Click", "Button clicked!")
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            if (url != ""){
+                Log.d("Button Click", "Button clicked!")
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
 
-            if (intent.resolveActivity(packageManager) != null) {
-                startActivity(intent)
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent)
+                }else {
+                    Toast.makeText(this, "No web browser app found.", Toast.LENGTH_SHORT).show()
+                }
             }else {
-                Toast.makeText(this, "No web browser app found.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Choose one of the faye3 choices.", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 }
